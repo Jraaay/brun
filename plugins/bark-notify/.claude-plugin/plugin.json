@@ -1,0 +1,11 @@
+{
+  "name": "bark-notify",
+  "description": "Send a Bark notification to your iPhone whenever Claude Code finishes a response.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jray"
+  },
+  "homepage": "https://github.com/Jraaay/brun",
+  "repository": "https://github.com/Jraaay/brun",
+  "license": "MIT"
+}
