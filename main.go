@@ -27,7 +27,12 @@ func main() {
 	}
 
 	cmdStr := strings.Join(os.Args[1:], " ")
-	cmd := exec.Command(os.Args[1], os.Args[2:]...)
+
+	shell := os.Getenv("SHELL")
+	if shell == "" {
+		shell = "sh"
+	}
+	cmd := exec.Command(shell, "-ic", cmdStr)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
