@@ -17,10 +17,18 @@ func main() {
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "usage: brun <command> [args...]")
 		fmt.Fprintln(os.Stderr, "env:   BARK_URL=https://api.day.app/<your-key>")
+		fmt.Fprintln(os.Stderr, "env:   BARK_OPTION=level=active&sound=alarm")
 		os.Exit(2)
 	}
 
 	barkURL := strings.TrimRight(os.Getenv("BARK_URL"), "/")
+	if opt := os.Getenv("BARK_OPTION"); opt != "" {
+		if strings.Contains(barkURL, "?") {
+			barkURL += "&" + opt
+		} else {
+			barkURL += "?" + opt
+		}
+	}
 	if barkURL == "" {
 		fmt.Fprintln(os.Stderr, "brun: BARK_URL is not set")
 		os.Exit(2)
